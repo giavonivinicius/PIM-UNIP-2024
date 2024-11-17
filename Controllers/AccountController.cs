@@ -1,16 +1,23 @@
 using Microsoft.AspNetCore.Mvc;
-using PimUrbanGreen.Repositories;
 using PimUrbanGreen.Models;
+using PimUrbanGreen.Repositories;
 
 namespace PimUrbanGreen.Controllers
 {
     public class AccountController : Controller
     {
         private readonly UserRepository _userRepository;
+        private readonly ProdutoRepository _produtoRepository;
+        private readonly PedidoRepository _pedidoRepository;
 
-        public AccountController(UserRepository userRepository)
+        public AccountController(
+            UserRepository userRepository, 
+            ProdutoRepository produtoRepository, 
+            PedidoRepository pedidoRepository)
         {
             _userRepository = userRepository;
+            _produtoRepository = produtoRepository;
+            _pedidoRepository = pedidoRepository;
         }
 
         [HttpGet]
@@ -20,26 +27,52 @@ namespace PimUrbanGreen.Controllers
         }
 
         [HttpPost]
-        public IActionResult Login(UserModel model)
+        public IActionResult Login(LoginViewModel model)
         {
             if (ModelState.IsValid)
             {
                 var user = _userRepository.GetUserByCredentials(model.Usuario, model.Senha);
                 if (user != null)
                 {
-                    // Após o login bem-sucedido, redireciona para a tela de boas-vindas
-                    return RedirectToAction("Wellcome", "Account");
+                    // Login bem-sucedido
+                    TempData["User"] = user.Usuario;
+                    return RedirectToAction("Wellcome");
                 }
-                ModelState.AddModelError("", "Usuário ou senha inválidos");
+                else
+                {
+                    ModelState.AddModelError("", "Usuário ou senha inválidos.");
+                }
             }
+
             return View(model);
         }
 
-        // Ação que renderiza a tela de boas-vindas após login bem-sucedido
         [HttpGet]
         public IActionResult Wellcome()
         {
-            return View();
+            var produtos = _produtoRepository.GetAllProdutos();
+            ViewBag.Produtos = produtos;
+            ViewBag.User = TempData["User"]?.ToString();
+            return View(new ItemPedidoModel());
+        }
+
+        [HttpPost]
+        public IActionResult PlacePedido(ItemPedidoModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                _pedidoRepository.AddItemPedido(model);
+                ViewBag.Message = "Pedido realizado com sucesso!";
+            }
+            else
+            {
+                ViewBag.Message = "Erro ao realizar o pedido.";
+            }
+
+            var produtos = _produtoRepository.GetAllProdutos();
+            ViewBag.Produtos = produtos;
+            return View("Wellcome", model);
         }
     }
 }
+    

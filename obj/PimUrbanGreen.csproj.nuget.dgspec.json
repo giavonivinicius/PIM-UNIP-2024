@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\vinig\\Documents\\Pessoais\\Cursos\\ADS-Unip\\4-SEM\\PIM\\Quitanda\\PimUrbanGreen.csproj": {}
+    "C:\\Users\\vinig\\Documents\\Pessoais\\Cursos\\ADS-Unip\\4-SEM\\PIM\\PimUrbanGreenAtualizado\\PimUrbanGreen.csproj": {}
   },
   "projects": {
-    "C:\\Users\\vinig\\Documents\\Pessoais\\Cursos\\ADS-Unip\\4-SEM\\PIM\\Quitanda\\PimUrbanGreen.csproj": {
+    "C:\\Users\\vinig\\Documents\\Pessoais\\Cursos\\ADS-Unip\\4-SEM\\PIM\\PimUrbanGreenAtualizado\\PimUrbanGreen.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\vinig\\Documents\\Pessoais\\Cursos\\ADS-Unip\\4-SEM\\PIM\\Quitanda\\PimUrbanGreen.csproj",
+        "projectUniqueName": "C:\\Users\\vinig\\Documents\\Pessoais\\Cursos\\ADS-Unip\\4-SEM\\PIM\\PimUrbanGreenAtualizado\\PimUrbanGreen.csproj",
         "projectName": "PimUrbanGreen",
-        "projectPath": "C:\\Users\\vinig\\Documents\\Pessoais\\Cursos\\ADS-Unip\\4-SEM\\PIM\\Quitanda\\PimUrbanGreen.csproj",
+        "projectPath": "C:\\Users\\vinig\\Documents\\Pessoais\\Cursos\\ADS-Unip\\4-SEM\\PIM\\PimUrbanGreenAtualizado\\PimUrbanGreen.csproj",
         "packagesPath": "C:\\Users\\vinig\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\vinig\\Documents\\Pessoais\\Cursos\\ADS-Unip\\4-SEM\\PIM\\Quitanda\\obj\\",
+        "outputPath": "C:\\Users\\vinig\\Documents\\Pessoais\\Cursos\\ADS-Unip\\4-SEM\\PIM\\PimUrbanGreenAtualizado\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\vinig\\AppData\\Roaming\\NuGet\\NuGet.Config"
@@ -38,33 +38,17 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "dependencies": {
-            "Microsoft.EntityFrameworkCore.Design": {
-              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
-              "suppressParent": "All",
-              "target": "Package",
-              "version": "[8.0.1, )"
-            },
-            "Microsoft.EntityFrameworkCore.SqlServer": {
-              "target": "Package",
-              "version": "[8.0.1, )"
-            },
-            "Microsoft.EntityFrameworkCore.Tools": {
-              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
-              "suppressParent": "All",
-              "target": "Package",
-              "version": "[8.0.1, )"
-            },
-            "Microsoft.Extensions.Configuration": {
+            "Microsoft.EntityFrameworkCore": {
               "target": "Package",
               "version": "[8.0.0, )"
             },
-            "Microsoft.Extensions.Configuration.Json": {
+            "Microsoft.EntityFrameworkCore.SqlServer": {
               "target": "Package",
-              "version": "[8.0.1, )"
+              "version": "[8.0.0, )"
             },
-            "Microsoft.Extensions.DependencyInjection": {
+            "Microsoft.EntityFrameworkCore.Tools": {
               "target": "Package",
-              "version": "[8.0.1, )"
+              "version": "[8.0.0, )"
             }
           },
           "imports": [

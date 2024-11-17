@@ -1,40 +1,28 @@
+@model PimUrbanGreen.Models.LoginViewModel
+
 @{
-  ViewData["Title"] = "Login";
+    ViewData["Title"] = "Login";
 }
 
 <div class="container-fluid text-center">
-  <div class="row justify-content-center">
-
-    <!-- Pedidos -->
-    <div class="col-lg-6 col-md-6 col-sm-12">
-      <div class="card mb-3">
-        <div class="row g-0">
-          <div class="col-md-12">
-            <div class="card-body">
-              <h5 class="card-title">Cadastro</h5>
-              <p class="card-text"><small class="text-body-primary">Preencha com seus dados.</small></p>
-              
-              <!-- Formulário de Cadastro -->
-              <form method="post">
-                <div class="mb-3">
-                  <label for="Usuario" class="form-label" >Nome</label>
-                  <input type="text" class="form-control" id="Usuario" name="usuario" required />
-                  <div class="form-text">Digite o seu nome completo.</div>
-                </div>
-                
-                <div class="mb-3">
-                  <label for="Senha" class="form-label">Senha</label>
-                  <input type="password" class="form-control" id="Senha" name="senha" required />
-                  <div class="form-text">Digite sua senha.</div>
-                </div>
-                
-                <button type="submit" class="btn btn-primary mt-3">Entrar</button>
-              </form>
-            </div>
-          </div>
+    <div class="row justify-content-center">
+        <div class="col-lg-6 col-md-6 col-sm-12">
+            <div class="card mb-3">
+                <div class="card-body">
+                    <h5 class="card-title">Login</h5>
+                    <form asp-action="Login" method="post">
+        <div>
+            <label>Usuário:</label>
+            <input asp-for="Usuario" />
         </div>
-      </div>
+        <div>
+            <label>Senha:</label>
+            <input asp-for="Senha" type="password" />
+        </div>
+        <button type="submit">Entrar</button>
+    </form>
+                </div>
+            </div>
+        </div>
     </div>
-    
-  </div>
 </div>
