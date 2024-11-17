@@ -27,7 +27,9 @@ namespace PimUrbanGreen.Data
 
             // Configuração da tabela ItensPedido
             modelBuilder.Entity<ItemPedidoModel>()
-                .ToTable("ItensPedido");
-        }
+                .ToTable("ItensPedido")
+                .Property(p => p.Usuario)
+                .HasColumnName("Usuario");
+                }
     }
 }

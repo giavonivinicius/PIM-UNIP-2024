@@ -9,6 +9,7 @@ using PimUrbanGreen.Repositories;
 
 var builder = WebApplication.CreateBuilder(args);
 
+// Configuração do banco de dados
 string? connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 if (string.IsNullOrEmpty(connectionString))
 {
@@ -18,11 +19,21 @@ if (string.IsNullOrEmpty(connectionString))
 builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseSqlServer(connectionString));
 
+// Registro dos repositórios como serviços
 builder.Services.AddScoped<UserRepository>();
 builder.Services.AddScoped<ProdutoRepository>();
 builder.Services.AddScoped<PedidoRepository>();
 
-builder.Services.AddControllersWithViews();
+// Configuração de TempData e Sessão
+builder.Services.AddDistributedMemoryCache(); // Necessário para armazenar dados em memória para sessão
+builder.Services.AddSession(options =>
+{
+    options.IdleTimeout = TimeSpan.FromMinutes(30); // Tempo de expiração da sessão
+    options.Cookie.HttpOnly = true; // Proteção contra acesso de JavaScript
+    options.Cookie.IsEssential = true; // Necessário para funcionar em cookies essenciais
+});
+builder.Services.AddControllersWithViews()
+    .AddSessionStateTempDataProvider(); // Configura o TempData para usar o estado da sessão
 
 var app = builder.Build();
 
@@ -40,6 +51,10 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();
+
+// Configuração da sessão
+app.UseSession();
+
 app.UseAuthorization();
 
 app.MapControllerRoute(
