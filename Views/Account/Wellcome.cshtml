@@ -1,29 +1,33 @@
 @model PimUrbanGreen.Models.ItemPedidoModel
 
-<h1>Bem-vindo, @ViewBag.User!</h1>
+@{
+    ViewData["Title"] = "Wellcome";
+}
 
 <div class="container-fluid text-center">
     <div class="row justify-content-center">
         <div class="col-lg-6 col-md-6 col-sm-12">
-            <div class="card mb-3">
+
+            <div class="card border-success mb-3">
+                <div class="card-header"><img id="icone01" src="@Url.Content("~/images/assistant.png")" alt="assistant"></div>
                 <div class="card-body">
                     <h5 class="card-title">Pedidos</h5>
                     <form asp-action="PlacePedido" method="post">
-    <div>
-        <label>Produto:</label>
-        <select asp-for="Produto" class="form-control">
-            @foreach (var produto in ViewBag.Produtos)
-            {
-                <option value="@produto.NomeProdutoAcabado">@produto.NomeProdutoAcabado</option>
-            }
-        </select>
-    </div>
-    <div>
-        <label>Quantidade:</label>
-        <input asp-for="Quantidade" type="number" min="1" />
-    </div>
-    <button type="submit">Fazer Pedido</button>
-</form>
+                        <div>
+                            <label class="form-label">Produtos</label>
+                            <select asp-for="Produto" class="form-select" id="customSelect">
+                                @foreach (var produto in ViewBag.Produtos)
+                                {
+                                    <option value="@produto.NomeProdutoAcabado">@produto.NomeProdutoAcabado</option>
+                                }
+                            </select>
+                        </div>
+                        <div>
+                            <label class="form-label">Quantidade</label>
+                            <input asp-for="Quantidade" type="number" class="form-control" min="1"/>
+                        </div>
+                        <button class="btn btn-success" type="submit">Fazer Pedido</button>
+                    </form>
 
 @if (ViewBag.Message != null)
 {

@@ -9,7 +9,6 @@ using PimUrbanGreen.Repositories;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Configurar o banco de dados
 string? connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 if (string.IsNullOrEmpty(connectionString))
 {
@@ -19,17 +18,14 @@ if (string.IsNullOrEmpty(connectionString))
 builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseSqlServer(connectionString));
 
-// Registrar os repositórios como serviços
 builder.Services.AddScoped<UserRepository>();
 builder.Services.AddScoped<ProdutoRepository>();
 builder.Services.AddScoped<PedidoRepository>();
 
-// Configurar Controllers e Views
 builder.Services.AddControllersWithViews();
 
 var app = builder.Build();
 
-// Configuração de middlewares
 if (app.Environment.IsDevelopment())
 {
     app.UseDeveloperExceptionPage();
@@ -46,7 +42,6 @@ app.UseStaticFiles();
 app.UseRouting();
 app.UseAuthorization();
 
-// Configuração de rotas
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Account}/{action=Login}/{id?}");

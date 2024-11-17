@@ -17,7 +17,7 @@ namespace PimUrbanGreen.Repositories
 
         public void AddItemPedido(ItemPedidoModel item)
         {
-            _context.ItensPedido.Add(item); // Adiciona diretamente os valores do modelo
+            _context.ItensPedido.Add(item); 
             _context.SaveChanges();
         }
 

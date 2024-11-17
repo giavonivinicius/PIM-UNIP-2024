@@ -23,7 +23,7 @@ namespace PimUrbanGreen.Data
             modelBuilder.Entity<ProdutoModel>()
                 .ToTable("ProdutoAcabado")
                 .Property(p => p.PrecoUnitario)
-                .HasColumnType("decimal(18,2)"); // Define precisão e escala para a coluna Preco
+                .HasColumnType("decimal(18,2)"); // precisão e escala para a coluna Preco
 
             // Configuração da tabela ItensPedido
             modelBuilder.Entity<ItemPedidoModel>()
