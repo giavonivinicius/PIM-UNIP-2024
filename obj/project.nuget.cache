@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "X9U5tU8jShunlhnidZLbgBsYJaWRP6tpOBqWBgPZ2wxV3sSgWuefOpaDAhynZw0u0vxRXy4VKaXkGdZr9n3/jQ==",
+  "dgSpecHash": "fzP1XcSngKqVyfxG2nLsbNb40GJkQUOACKSYVpsydrztMpJAPQz4gpCVJzVwVYMqFKLRUYsTzVCtL9P/gY55Dw==",
   "success": true,
-  "projectFilePath": "C:\\Users\\vinig\\Documents\\Pessoais\\Cursos\\ADS-Unip\\4-SEM\\PIM\\PimUrbanGreenAtualizado\\PimUrbanGreen.csproj",
+  "projectFilePath": "C:\\Users\\vinig\\Documents\\Pessoais\\Cursos\\ADS-Unip\\4-SEM\\PIM\\PimUrbanGreenFinal\\PimUrbanGreen.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\vinig\\.nuget\\packages\\azure.core\\1.25.0\\azure.core.1.25.0.nupkg.sha512",
     "C:\\Users\\vinig\\.nuget\\packages\\azure.identity\\1.7.0\\azure.identity.1.7.0.nupkg.sha512",

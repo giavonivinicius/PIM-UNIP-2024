@@ -1,5 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Http; // Adicionado para suportar ISession
+using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
 using PimUrbanGreen.Models;
 using PimUrbanGreen.Repositories;
@@ -36,71 +36,41 @@ namespace PimUrbanGreen.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = _userRepository.GetUserByCredentials(model.Usuario, model.Senha);
+                var user = _userRepository.GetUserByCredentials(model.NomeUsuario, model.Senha);
                 if (user != null)
                 {
-                    // Login bem-sucedido: Armazena o usuário na sessão
-                    HttpContext.Session.SetString("User", user.Usuario);
-                    _logger.LogInformation($"Usuário logado com sucesso: {user.Usuario}");
+                    HttpContext.Session.SetString("User", user.NomeUsuario);
                     return RedirectToAction("Wellcome");
                 }
-                else
-                {
-                    _logger.LogWarning("Tentativa de login falhou: Usuário ou senha inválidos.");
-                    ModelState.AddModelError("", "Usuário ou senha inválidos.");
-                }
+                ModelState.AddModelError("", "Usuário ou senha inválidos.");
             }
-
             return View(model);
         }
 
         [HttpGet]
         public IActionResult Wellcome()
         {
-            var produtos = _produtoRepository.GetAllProdutos();
-            ViewBag.Produtos = produtos;
-
-            // Recupera o usuário logado da sessão
-            var loggedUser = HttpContext.Session.GetString("User");
-            ViewBag.User = loggedUser;
-
-            _logger.LogInformation($"Bem-vindo exibido para o usuário: {loggedUser}");
-
-            return View(new ItemPedidoModel());
+            ViewBag.Produtos = _produtoRepository.GetAllProdutos();
+            ViewBag.User = HttpContext.Session.GetString("User");
+            return View(new PedidoWebModel());
         }
-        
+
         [HttpPost]
-        public IActionResult PlacePedido(ItemPedidoModel model)
+        public IActionResult PlacePedido(PedidoWebModel model)
         {
-            // Recupera o usuário logado da sessão
             var loggedUser = HttpContext.Session.GetString("User");
-            _logger.LogInformation($"Tentativa de inserir pedido pelo usuário: {loggedUser}");
-
-            if (!string.IsNullOrEmpty(loggedUser))
+            if (loggedUser != null)
             {
-                model.Usuario = loggedUser;
-                _logger.LogInformation($"Campo Usuario do modelo preenchido com: {loggedUser}");
-            }
-            else
-            {
-                _logger.LogWarning("Nenhum usuário logado identificado na sessão.");
-            }
-
-            if (ModelState.IsValid)
-            {
-                _pedidoRepository.AddItemPedido(model);
+                model.UsuarioPedido = loggedUser;
+                _pedidoRepository.AddPedidoWeb(model);
                 ViewBag.Message = "Pedido realizado com sucesso!";
-                _logger.LogInformation($"Pedido realizado com sucesso para o usuário: {loggedUser}");
             }
             else
             {
-                ViewBag.Message = "Erro ao realizar o pedido.";
-                _logger.LogWarning("Erro ao realizar o pedido: ModelState inválido.");
+                ViewBag.Message = "Erro ao identificar o usuário.";
             }
 
-            var produtos = _produtoRepository.GetAllProdutos();
-            ViewBag.Produtos = produtos;
-
+            ViewBag.Produtos = _produtoRepository.GetAllProdutos();
             return View("Wellcome", model);
         }
     }

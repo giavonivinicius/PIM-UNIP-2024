@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("PimUrbanGreen")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+d222f68cac1ebf17bd901f6ab8cc12ec8d751a6d")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+d9cacc7e0897990beec2a8168077ffe74dab093a")]
 [assembly: System.Reflection.AssemblyProductAttribute("PimUrbanGreen")]
 [assembly: System.Reflection.AssemblyTitleAttribute("PimUrbanGreen")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

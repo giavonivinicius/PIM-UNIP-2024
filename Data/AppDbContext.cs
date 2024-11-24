@@ -9,27 +9,30 @@ namespace PimUrbanGreen.Data
 
         public DbSet<UserModel> Users { get; set; }
         public DbSet<ProdutoModel> Produtos { get; set; }
-        public DbSet<ItemPedidoModel> ItensPedido { get; set; }
+        public DbSet<PedidoWebModel> PedidoWeb { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
 
-            // Configuração da tabela Usuarios
+            // UserModel
             modelBuilder.Entity<UserModel>()
-                .ToTable("Usuarios");
+                .ToTable("Usuarios")
+                .HasKey(u => u.NomeUsuario); 
 
-            // Configuração da tabela ProdutoAcabado
+            // ProdutoModel
             modelBuilder.Entity<ProdutoModel>()
                 .ToTable("ProdutoAcabado")
-                .Property(p => p.PrecoUnitario)
-                .HasColumnType("decimal(18,2)"); // precisão e escala para a coluna Preco
+                .HasKey(p => p.NomeProdutoAcabado);
 
-            // Configuração da tabela ItensPedido
-            modelBuilder.Entity<ItemPedidoModel>()
-                .ToTable("ItensPedido")
-                .Property(p => p.Usuario)
-                .HasColumnName("Usuario");
-                }
+            // PedidoWebModel
+            modelBuilder.Entity<PedidoWebModel>()
+                .ToTable("PedidoWeb")
+                .HasKey(p => new { p.Produto, p.UsuarioPedido });
+
+            modelBuilder.Entity<PedidoWebModel>()
+                .Property(p => p.UsuarioPedido)
+                .HasColumnName("UsuarioPedido");
+        }
     }
 }

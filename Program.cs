@@ -9,7 +9,7 @@ using PimUrbanGreen.Repositories;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Configuração do banco de dados
+// banco de dados
 string? connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 if (string.IsNullOrEmpty(connectionString))
 {
@@ -19,21 +19,21 @@ if (string.IsNullOrEmpty(connectionString))
 builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseSqlServer(connectionString));
 
-// Registro dos repositórios como serviços
+// Registro das repository
 builder.Services.AddScoped<UserRepository>();
 builder.Services.AddScoped<ProdutoRepository>();
 builder.Services.AddScoped<PedidoRepository>();
 
-// Configuração de TempData e Sessão
-builder.Services.AddDistributedMemoryCache(); // Necessário para armazenar dados em memória para sessão
+// Configuração de TempData e Sessão para depois enviar ao bd o usuario
+builder.Services.AddDistributedMemoryCache();
 builder.Services.AddSession(options =>
 {
-    options.IdleTimeout = TimeSpan.FromMinutes(30); // Tempo de expiração da sessão
-    options.Cookie.HttpOnly = true; // Proteção contra acesso de JavaScript
-    options.Cookie.IsEssential = true; // Necessário para funcionar em cookies essenciais
+    options.IdleTimeout = TimeSpan.FromMinutes(30); // Tempo de expiração da sessão em 30 minutos
+    options.Cookie.HttpOnly = true; // Proteção contra acesso de JavaScript "garantir segurança na web"
+    options.Cookie.IsEssential = true; // cookies essenciais "não sei a importância de deixar essa parte"
 });
 builder.Services.AddControllersWithViews()
-    .AddSessionStateTempDataProvider(); // Configura o TempData para usar o estado da sessão
+    .AddSessionStateTempDataProvider(); // Configura o TempData para usar o estado da sessão "devido a necessidade de garantir que o usuario seja submetido ao banco"
 
 var app = builder.Build();
 

@@ -1,4 +1,3 @@
-using System;
 using PimUrbanGreen.Data;
 using PimUrbanGreen.Models;
 using System.Collections.Generic;
@@ -18,12 +17,6 @@ namespace PimUrbanGreen.Repositories
         public List<ProdutoModel> GetAllProdutos()
         {
             return _context.Produtos.ToList();
-        }
-
-        public void AddProduto(ProdutoModel produto)
-        {
-            _context.Produtos.Add(produto);
-            _context.SaveChanges();
         }
     }
 }

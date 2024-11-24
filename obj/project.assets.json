@@ -4021,11 +4021,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\vinig\\Documents\\Pessoais\\Cursos\\ADS-Unip\\4-SEM\\PIM\\PimUrbanGreenAtualizado\\PimUrbanGreen.csproj",
+      "projectUniqueName": "C:\\Users\\vinig\\Documents\\Pessoais\\Cursos\\ADS-Unip\\4-SEM\\PIM\\PimUrbanGreenFinal\\PimUrbanGreen.csproj",
       "projectName": "PimUrbanGreen",
-      "projectPath": "C:\\Users\\vinig\\Documents\\Pessoais\\Cursos\\ADS-Unip\\4-SEM\\PIM\\PimUrbanGreenAtualizado\\PimUrbanGreen.csproj",
+      "projectPath": "C:\\Users\\vinig\\Documents\\Pessoais\\Cursos\\ADS-Unip\\4-SEM\\PIM\\PimUrbanGreenFinal\\PimUrbanGreen.csproj",
       "packagesPath": "C:\\Users\\vinig\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\vinig\\Documents\\Pessoais\\Cursos\\ADS-Unip\\4-SEM\\PIM\\PimUrbanGreenAtualizado\\obj\\",
+      "outputPath": "C:\\Users\\vinig\\Documents\\Pessoais\\Cursos\\ADS-Unip\\4-SEM\\PIM\\PimUrbanGreenFinal\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\vinig\\AppData\\Roaming\\NuGet\\NuGet.Config"

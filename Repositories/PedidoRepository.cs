@@ -1,6 +1,5 @@
 using PimUrbanGreen.Data;
 using PimUrbanGreen.Models;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -15,15 +14,15 @@ namespace PimUrbanGreen.Repositories
             _context = context;
         }
 
-        public void AddItemPedido(ItemPedidoModel item)
+        public void AddPedidoWeb(PedidoWebModel item)
         {
-            _context.ItensPedido.Add(item); 
+            _context.PedidoWeb.Add(item);
             _context.SaveChanges();
         }
 
-        public List<ItemPedidoModel> GetAllItensPedidos()
+        public List<PedidoWebModel> GetAllPedidoWeb()
         {
-            return _context.ItensPedido.ToList();
+            return _context.PedidoWeb.ToList();
         }
     }
 }

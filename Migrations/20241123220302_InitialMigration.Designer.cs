@@ -12,10 +12,9 @@ using PimUrbanGreen.Data;
 namespace PimUrbanGreen.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20241116214118_AtualizarProdutoModel")]
-    partial class AtualizarProdutoModel
+    [Migration("20241123220302_InitialMigration")]
+    partial class InitialMigration
     {
-        /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
@@ -25,44 +24,30 @@ namespace PimUrbanGreen.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("PimUrbanGreen.Models.ItemPedidoModel", b =>
+            modelBuilder.Entity("PimUrbanGreen.Models.PedidoWebModel", b =>
                 {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+                    b.Property<string>("Produto")
+                        .HasColumnType("nvarchar(450)");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                    b.Property<string>("UsuarioPedido")
+                        .HasColumnType("nvarchar(450)")
+                        .HasColumnName("Usuario");
 
                     b.Property<DateTime>("DataPedido")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("Produto")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<int>("Quantidade")
                         .HasColumnType("int");
 
-                    b.Property<string>("Usuario")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.HasKey("Produto", "UsuarioPedido");
 
-                    b.HasKey("Id");
-
-                    b.ToTable("ItensPedido", (string)null);
+                    b.ToTable("PedidoWeb", (string)null);
                 });
 
             modelBuilder.Entity("PimUrbanGreen.Models.ProdutoModel", b =>
                 {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
                     b.Property<string>("NomeProdutoAcabado")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<decimal>("PrecoUnitario")
                         .HasColumnType("decimal(18,2)");
@@ -70,28 +55,22 @@ namespace PimUrbanGreen.Migrations
                     b.Property<int>("QuantidadeEstoque")
                         .HasColumnType("int");
 
-                    b.HasKey("Id");
+                    b.HasKey("NomeProdutoAcabado");
 
                     b.ToTable("ProdutoAcabado", (string)null);
                 });
 
             modelBuilder.Entity("PimUrbanGreen.Models.UserModel", b =>
                 {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                    b.Property<string>("NomeUsuario")
+                        .HasColumnType("nvarchar(450)")
+                        .HasColumnName("NomeUsuario");
 
                     b.Property<string>("Senha")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Usuario")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
+                    b.HasKey("NomeUsuario");
 
                     b.ToTable("Usuarios", (string)null);
                 });

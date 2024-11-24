@@ -13,9 +13,9 @@ namespace PimUrbanGreen.Repositories
             _context = context;
         }
 
-        public UserModel? GetUserByCredentials(string usuario, string senha)
+        public UserModel? GetUserByCredentials(string nomeUsuario, string senha)
         {
-            return _context.Users.FirstOrDefault(u => u.Usuario == usuario && u.Senha == senha);
+            return _context.Users.FirstOrDefault(u => u.NomeUsuario == nomeUsuario && u.Senha == senha);
         }
     }
 }
